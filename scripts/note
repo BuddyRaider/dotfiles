@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Simple script for notes and stuff, change the notesDir variable if needed
+
+if [[ -n "$HOME" ]]; then
+	notesDir="${HOME}/Notes"
+else
+	notesDir="/home/nick/Notes"
+fi
+
+if [[ "$1" == "e" ]]; then
+	if [[ -n "$2" ]]; then
+		vim "${notesDir}/${2}"
+	else
+		vim "${notesDir}/"
+	fi
+else
+	find "${notesDir}/" -type f -exec batcat --paging always '{}' \;
+fi
